@@ -1,0 +1,4 @@
+#!/bin/bash
+set -e
+
+exec /usr/bin/transmission-daemon -f --no-portmap --config-dir /etc/transmission-daemon
