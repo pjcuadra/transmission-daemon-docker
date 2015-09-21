@@ -14,6 +14,6 @@ ADD files /etc/transmission-daemon
 
 EXPOSE 9091
 
-USER debian-transmission
+CMD exec /etc/transmission-daemon/transmission.run
 
-ENTRYPOINT exec /etc/transmission-daemon/transmission.run
+USER debian-transmission

@@ -1,4 +1,19 @@
 #!/bin/bash
 set -e
 
-exec /usr/bin/transmission-daemon -f --no-portmap --config-dir /etc/transmission-daemon
+# USE the trap if you need to also do manual cleanup after the service is stopped,
+#     or need to start multiple services in the one container
+trap "echo TRAPed signal" HUP INT QUIT KILL TERM
+
+# start service in background here
+echo "Starting transmission-daemon"
+service transmission-daemon start
+
+echo "[hit enter key to exit] or run 'docker stop <container>'"
+read
+
+# stop service and clean up here
+echo "Stopping transmission-daemon"
+service transmission-daemon stop
+
+echo "exited $0"
